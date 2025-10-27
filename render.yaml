@@ -1,0 +1,20 @@
+# Archivo de configuración para Render.com
+# Comandos de construcción y despliegue
+
+# Comando de construcción
+build: pip install -r requirements.txt && python manage.py collectstatic --noinput && python manage.py migrate
+
+# Comando de inicio
+start: gunicorn sistema_casos_comunitario.wsgi:application
+
+# Variables de entorno requeridas en Render.com:
+# SECRET_KEY: Tu clave secreta de Django (generar una nueva)
+# DEBUG: False
+# DATABASE_URL: URL de la base de datos PostgreSQL de Render
+# ALLOWED_HOSTS: tu-app.onrender.com
+# CSRF_TRUSTED_ORIGINS: https://tu-app.onrender.com
+# EMAIL_HOST: smtp.gmail.com
+# EMAIL_PORT: 587
+# EMAIL_USE_TLS: True
+# EMAIL_HOST_USER: tu-email@gmail.com
+# EMAIL_HOST_PASSWORD: tu-password-de-aplicacion
